@@ -7,6 +7,9 @@ from django.contrib.auth import login, authenticate
 def home(request):
     return render(request, "base.html")
 
+def dashboard(request):
+    return render(request, "dashboard/index.html")
+
 def register(request):
     context = {}
     if request.method == 'POST':

@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'dashboardtemp/assets/css/argon.css' %}">
     <title>Document</title>
 </head>
 
 <body>
-    hfdjkjd
-
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <script src="{% static 'dashboardtemp/assets/vendor/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'dashboardtemp/assets/vendor/js-cookie/js.cookie.js' %}"></script>
+    <script src="{% static 'dashboardtemp/assets/js/argon.js' %}"></script>
+    <script src="{% static 'dashboardtemp/assets/js/home.js' %}"></script>
 </body>
 
 </html>
