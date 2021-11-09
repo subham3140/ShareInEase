@@ -9,6 +9,7 @@ class User(AbstractBaseUser):
     profile = models.ImageField(upload_to = "profile", verbose_name="profile pic")
     phone = models.CharField(max_length=14, verbose_name="phone number", null=True)
     specialist = models.CharField(max_length=500, blank=True, verbose_name="subject specialist")
+    address = models.CharField(max_length=1000, blank=True, null=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
@@ -35,7 +36,10 @@ class FileModel(models.Model):
     file = models.FileField(upload_to="files", max_length=500)
     uploaded_at = models.DateField(auto_now_add=True)
     title = models.CharField(max_length=100)
-    about = models.TextField()
+    about = models.TextField(null=True, blank=True)
 
     def __str__(self) -> str:
         return f"{self.user.username}-{self.file_name}"
+
+    def filename(self) -> str:
+        return (self.file.path).split("\r")[0].split("\\")[-1]

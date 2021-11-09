@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from shareApp.forms import UserRegisterForm
 from django.contrib.auth import login, authenticate
+from shareApp.models import FileModel, User
 
 
 
@@ -8,7 +9,11 @@ def home(request):
     return render(request, "base.html")
 
 def dashboard(request):
-    return render(request, "dashboard/index.html")
+    files = FileModel.objects.filter(user=request.user)
+    context = {
+        "files": files
+    }
+    return render(request, "dashboard/index.html", context)
 
 def register(request):
     context = {}
@@ -27,3 +32,9 @@ def register(request):
         context['form'] = UserRegisterForm()        
         
     return render(request, "shareApp/register.html", context)
+
+
+def profile(request):
+    user = request.user
+    context = { "user": user}
+    return render(request, "profile/index.html", context)

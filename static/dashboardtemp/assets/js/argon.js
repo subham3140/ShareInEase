@@ -841,9 +841,9 @@ var BarsChart = (function() {
         var ordersChart = new Chart($chart, {
             type: 'bar',
             data: {
-                labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 datasets: [{
-                    label: 'Sales',
+                    label: 'Downloaded',
                     data: [25, 20, 30, 22, 17, 29]
                 }]
             }
@@ -915,10 +915,10 @@ var SalesChart = (function() {
                 }
             },
             data: {
-                labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 datasets: [{
-                    label: 'Performance',
-                    data: [0, 20, 10, 30, 15, 40, 20, 60, 60]
+                    label: 'Download Action',
+                    data: []
                 }]
             }
         });

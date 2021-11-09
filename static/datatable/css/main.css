@@ -1,0 +1,25 @@
+.button_slide {
+    width: 125px;
+    height: 50px;
+    color: #FFF;
+    border: 2px solid #cc5f04;
+    border-radius: 20px;
+    display: inline-block;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 #cc5f04;
+    -webkit-transition: ease-out 0.4s;
+    -moz-transition: ease-out 0.4s;
+    transition: ease-out 0.4s;
+}
+
+.buttons-excel,
+.buttons-pdf {
+    background-color: #f1642c;
+}
+
+.slide:hover {
+    box-shadow: inset 0 0 0 50px #e74708;
+}
