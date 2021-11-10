@@ -15616,16 +15616,35 @@ a.btn-icon-only {
 
 /* JavaScript Turned Off */
 
-.chart {
+.mainchart {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.leftchart {
+    border-right: 1px solid var(--gray);
+}
+
+.leftchart,
+.rightchart {
+    width: 50%;
+    height: 100%;
+}
+
+.chart1,
+.chart2 {
     position: relative;
     height: 350px;
 }
 
-.chart-sm {
+.chart1-sm,
+.chart2-sm {
     height: 230px;
 }
 
-.chart-legend {
+.chart1-legend,
+.chart2-legend {
     font-size: .875rem;
     display: flex;
     margin-top: 2.5rem;
@@ -15634,16 +15653,19 @@ a.btn-icon-only {
     justify-content: center;
 }
 
-.chart-legend-item {
+.chart1-legend-item,
+.chart2-legend-item {
     display: inline-flex;
     align-items: center;
 }
 
-.chart-legend-item+.chart-legend-item {
+.chart1-legend-item+.chart1-legend-item,
+.chart2-legend-item+.chart2-legend-item {
     margin-left: 1rem;
 }
 
-.chart-legend-indicator {
+.chart1-legend-indicator,
+.chart2-legend--indicator {
     display: inline-block;
     width: .5rem;
     height: .5rem;
@@ -15651,17 +15673,20 @@ a.btn-icon-only {
     border-radius: 50%;
 }
 
-#chart-tooltip {
+#chart1-tooltip,
+#chart2-tooltip {
     z-index: 0;
 }
 
-#chart-tooltip .arrow {
+#chart1-tooltip .arrow,
+#chart2-tooltip .arrow {
     top: 100%;
     left: 50%;
     transform: translateX(-50%) translateX(-.5rem);
 }
 
-.chart-info-overlay {
+.chart1-info-overlay,
+.chart2-info-overlay {
     position: absolute;
     z-index: 1;
     top: 0;

@@ -821,14 +821,29 @@ if ($map.length) {
 // Bars chart
 //
 
+// Create chart
+
+function callajx() {
+    return $.ajax({
+        type: 'GET',
+        url: "",
+        global: false,
+        async: false,
+        success: function(response) {
+            return response
+        }
+    });
+}
+
+var data_arr = callajx().responseJSON
+
 var BarsChart = (function() {
 
     //
     // Variables
     //
 
-    var $chart = $('#chart-bars');
-
+    var $chart = $('#chart-bars1');
 
     //
     // Methods
@@ -837,14 +852,13 @@ var BarsChart = (function() {
     // Init chart
     function initChart($chart) {
 
-        // Create chart
         var ordersChart = new Chart($chart, {
             type: 'bar',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 datasets: [{
-                    label: 'Downloaded',
-                    data: [25, 20, 30, 22, 17, 29]
+                    label: 'Uploaded',
+                    data: data_arr["data1"]
                 }]
             }
         });
@@ -853,6 +867,54 @@ var BarsChart = (function() {
         $chart.data('chart', ordersChart);
     }
 
+    // Init chart
+    if ($chart.length) {
+        initChart($chart);
+    }
+
+})();
+
+var PieChart = (function() {
+
+    //
+    // Variables
+    //
+
+    var $chart = $('#chart-bars2');
+
+
+    //
+    // Methods
+    //
+
+    // Init chart
+    function initChart($chart) {
+        console.log(data_arr["data2"])
+        var ordersChart = new Chart($chart, {
+            type: 'pie',
+            data: {
+                labels: ["Assignment", "Syllabus", "Report", "Notice", "Result", "Other"],
+                datasets: [{
+                    label: 'Downloaded',
+                    data: data_arr["data2"],
+                    backgroundColor: ["rgb(255, 99, 132)", "rgb(50, 89, 5)", "rgb(255, 205, 86)", "rgb(50, 145, 168)", "rgb(65, 14, 99)", "rgb(54, 162, 235)"],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        fontColor: "#000080",
+                    }
+                }
+            }
+        });
+
+        // Save to jQuery object
+        $chart.data('chart', ordersChart);
+    }
 
     // Init chart
     if ($chart.length) {
@@ -862,81 +924,6 @@ var BarsChart = (function() {
 })();
 
 'use strict';
-
-//
-// Sales chart
-//
-
-var SalesChart = (function() {
-
-    // Variables
-
-    var $chart = $('#chart-sales-dark');
-
-
-    // Methods
-
-    function init($chart) {
-
-        var salesChart = new Chart($chart, {
-            type: 'line',
-            options: {
-                scales: {
-                    yAxes: [{
-                        gridLines: {
-                            lineWidth: 1,
-                            color: Charts.colors.gray[900],
-                            zeroLineColor: Charts.colors.gray[900]
-                        },
-                        ticks: {
-                            callback: function(value) {
-                                if (!(value % 10)) {
-                                    return '$' + value + 'k';
-                                }
-                            }
-                        }
-                    }]
-                },
-                tooltips: {
-                    callbacks: {
-                        label: function(item, data) {
-                            var label = data.datasets[item.datasetIndex].label || '';
-                            var yLabel = item.yLabel;
-                            var content = '';
-
-                            if (data.datasets.length > 1) {
-                                content += '<span class="popover-body-label mr-auto">' + label + '</span>';
-                            }
-
-                            content += '<span class="popover-body-value">$' + yLabel + 'k</span>';
-                            return content;
-                        }
-                    }
-                }
-            },
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                datasets: [{
-                    label: 'Download Action',
-                    data: []
-                }]
-            }
-        });
-
-        // Save to jQuery object
-
-        $chart.data('chart', salesChart);
-
-    };
-
-
-    // Events
-
-    if ($chart.length) {
-        init($chart);
-    }
-
-})();
 
 //
 // Bootstrap Datepicker

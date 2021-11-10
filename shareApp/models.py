@@ -1,7 +1,17 @@
 from django.db import models
 from .manager import NewBaseManager
 from django.contrib.auth.models import AbstractBaseUser
+from django.utils.timezone import now
 # Create your models here.
+
+FILE_TYPE = (
+    ("assignment", "ASSIGNMENT"),
+    ("syllabus", "SYLLABUS"),
+    ("report", "REPORT"),
+    ("notice", "NOTICE"),
+    ("result", "RESULT"),
+    ("other", "OTHER")
+)
 
 class User(AbstractBaseUser):
     username = models.CharField(max_length=100, unique=True)
@@ -14,6 +24,12 @@ class User(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+
+    facebook_link = models.CharField(max_length=1000, blank=True, null=True)
+    github_link = models.CharField(max_length=1000, blank=True, null=True)
+    twitter_link = models.CharField(max_length=1000, blank=True, null=True)
+    instagram_link = models.CharField(max_length=1000, blank=True, null=True)
+    linkedin_link = models.CharField(max_length=1000, blank=True, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']    
@@ -34,7 +50,8 @@ class FileModel(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     file_name = models.CharField(max_length=100)
     file = models.FileField(upload_to="files", max_length=500)
-    uploaded_at = models.DateField(auto_now_add=True)
+    file_type = models.CharField(max_length=50, blank=False, choices=FILE_TYPE, default=FILE_TYPE[3][0])
+    uploaded_at = models.DateField(default=now)
     title = models.CharField(max_length=100)
     about = models.TextField(null=True, blank=True)
 

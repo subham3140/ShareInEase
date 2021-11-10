@@ -32,7 +32,6 @@
 </head>
 
 <body>
-
     <!-- Sidenav -->
     <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
         <div class="scrollbar-inner">
@@ -154,14 +153,26 @@
                     <div class="row align-items-center">
                         <div class="col">
                             <h5 class="text-uppercase text-muted ls-1 mb-1">Performance</h5>
-                            <h5 class="h3 mb-0">Total Downloaded File</h5>
+                            <div style="display: flex; justify-content: space-around;">
+                                <h5 class="h3 mb-0">Total Uploaded File</h5>
+                                <h5 class="h3 mb-0">File Type Uploaded</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <!-- Chart -->
-                    <div class="chart">
-                        <canvas id="chart-bars" class="chart-canvas"></canvas>
+                    <div class="mainchart">
+                        <div class="leftchart">
+                            <div class="chart1">
+                                <canvas id="chart-bars1" class="chart-canvas"></canvas>
+                            </div>
+                        </div>
+                        <div class="rightchart">
+                            <div class="chart2">
+                                <canvas id="chart-bars2" class="chart-canvas"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -230,7 +241,6 @@
     <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.colVis.min.js"></script>
     <script src="{% static 'datatable/js/main.js' %}"></script>
-
 </body>
 
 </html>
