@@ -5,5 +5,6 @@ app_name = "shareApp"
 
 urlpatterns = [
     path('loggedin/', views.login_user, name="loggedin"),
-    path('loggedout/', views.logout_user, name="logout")
+    path('loggedout/', views.logout_user, name="logout"),
+    path('detail/<int:pk>', views.detail, name="detail")
 ]

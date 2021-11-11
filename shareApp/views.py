@@ -17,3 +17,9 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect("login")
+
+
+def detail(request, **args):
+    context = {}
+    print(args)
+    return render(request, "shareApp/detail.html", context)

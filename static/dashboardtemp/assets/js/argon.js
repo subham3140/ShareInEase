@@ -897,7 +897,7 @@ var PieChart = (function() {
                 datasets: [{
                     label: 'Downloaded',
                     data: data_arr["data2"],
-                    backgroundColor: ["rgb(255, 99, 132)", "rgb(50, 89, 5)", "rgb(255, 205, 86)", "rgb(50, 145, 168)", "rgb(65, 14, 99)", "rgb(54, 162, 235)"],
+                    backgroundColor: ["rgb(255, 99, 132)", "rgb(176, 28, 235)", "rgb(255, 205, 86)", "rgb(50, 145, 168)", "rgb(65, 14, 99)", "rgb(54, 162, 235)"],
                     hoverOffset: 4
                 }]
             },

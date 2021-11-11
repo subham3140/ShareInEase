@@ -21,11 +21,12 @@ def dashboard(request):
            files = 0 
         result2 = [result2temp[item] for item in result2temp]
         return JsonResponse({"data1": result1, "data2":result2})
-    files = FileModel.objects.filter(user=request.user)
+    files = FileModel.objects.filter(user=request.user).order_by("-uploaded_at")
     context = {
         "files": files,
         "user": User.objects.get(id=request.user.id)
     }
+    
     return render(request, "dashboard/index.html", context)
 
 def register(request):
@@ -49,5 +50,21 @@ def register(request):
 
 def profile(request):
     user = request.user
-    context = { "user": user}
+    assignment = FileModel.objects.filter(user=user, file_type="assignment")
+    syllabus = FileModel.objects.filter(user=user, file_type="syllabus")
+    report = FileModel.objects.filter(user=user, file_type="report")
+    notice = FileModel.objects.filter(user=user, file_type="notice")
+    result = FileModel.objects.filter(user=user, file_type="result")
+    other = FileModel.objects.filter(user=user, file_type="other")
+    context = { 
+        "user": user,
+        "assignment": assignment,
+        "syllabus": syllabus,
+        "report": report,
+        "notice": notice,
+        "result": result,
+        "other": other
+        }
+    print(assignment)
+   
     return render(request, "profile/index.html", context)
