@@ -4,6 +4,8 @@ from django.views.generic.base import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+from django.conf.urls import url
+from django.views.static import serve
 
 urlpatterns = [
     path('shareApp/', include('shareApp.urls', namespace="shareApp")),
@@ -13,4 +15,5 @@ urlpatterns = [
     path('profile/',views.profile, name="profile"),
     path('register/', views.register, name="register"),
     path('admin/', admin.site.urls),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    url(r'download/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

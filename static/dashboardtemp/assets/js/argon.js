@@ -889,7 +889,6 @@ var PieChart = (function() {
 
     // Init chart
     function initChart($chart) {
-        console.log(data_arr["data2"])
         var ordersChart = new Chart($chart, {
             type: 'pie',
             data: {

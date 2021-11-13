@@ -1,4 +1,4 @@
-{% extends 'main.html' %} {% load static %} {% block content %}
+{% extends 'main.html' %} {% load static %}{% load sizify %} {% block download %}
 <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: flex; justify-content: flex-end;">
@@ -60,81 +60,29 @@
         </div>
     </div>
 </nav>
-<!-- Header -->
-<!-- Page content -->
-<div class="container-fluid" style="text-align: center;">
-    <div class="card">
-        <div class="card-header bg-transparent">
-            <div class="row align-items-center">
-                <div class="col">
-                    <h5 class="text-uppercase text-muted ls-1 mb-1">Performance</h5>
-                    <div style="display: flex; justify-content: space-around;">
-                        <h5 class="h3 mb-0">Total Uploaded File</h5>
-                        <h5 class="h3 mb-0">File Type Uploaded</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+<div class="container d">
+    <div class="card col-6 mt-6">
         <div class="card-body">
-            <!-- Chart -->
-            <div class="mainchart">
-                <div class="leftchart">
-                    <div class="chart1">
-                        <canvas id="chart-bars1" class="chart-canvas"></canvas>
-                    </div>
+            <div class="row1">
+                <div style="display: flex; justify-content: center;">
+                    <img src="{% static 'profile/download.png' %}" width=90px>
                 </div>
-                <div class="rightchart">
-                    <div class="chart2">
-                        <canvas id="chart-bars2" class="chart-canvas"></canvas>
-                    </div>
+            </div>
+            <div class="row2">
+                <div>
+                    <i> <h5 class="material-icons text-info">YOUR FILE IS READY TO DOWNLOAD</h5></i>
+                </div>
+                <div>
+                    <i> <h5 class="material-icons text-info">{{ file.filename }}</h5></i>
+                </div>
+                <div>
+                    <i> <h4 class="material-icons text-info">{{ file.file.size|sizify }}</h4></i>
+                </div>
+                <div>
+                    <button class="button_action bdownload"><a href="{{ file.file.url }}" download="{{ file.file.url }}" style="color: white; text-decoration: none; font-size: 20px;">Download</a></button>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="card">
-
-        <div class="table-responsive mb-3 mt-1">
-            <!-- Projects table -->
-            <table id="mydatatable" class="table table-striped table-bordered" style="width:100%">
-
-                <thead>
-                    <tr>
-                        <th> FILE NAME </th>
-                        <th> FILE </th>
-                        <th> UPLOADED AT</th>
-                        <th> ACTION </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for file in files %}
-                    <tr>
-                        <td>{{ file.file_name }}</td>
-                        <td>{{ file.filename }}</td>
-                        <td>{{ file.uploaded_at }}</td>
-                        <td>
-                            <div style="display: flex; justify-content: space-around;">
-                                <button class="button_action">Share</button>
-                                <button class="button_action">QR Code</button>
-                                <button class="button_action"><a href="{% url 'shareApp:detail' file.pk %}" style="color: white; text-decoration: none;">View</a></button>
-                            </div>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!-- Footer -->
-    <footer class="footer pt-0">
-        <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6">
-                <div class="copyright text-center  text-lg-left  text-muted">
-                    &copy; 2021 <a href="">ShareInEase</a>
-                </div>
-            </div>
-
-        </div>
-    </footer>
-</div>
-{% endblock %}
+    {% endblock %}

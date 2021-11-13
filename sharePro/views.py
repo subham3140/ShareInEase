@@ -65,6 +65,5 @@ def profile(request):
         "result": result,
         "other": other
         }
-    print(assignment)
    
     return render(request, "profile/index.html", context)
