@@ -10,5 +10,6 @@ urlpatterns = [
     path('loggedout/', views.logout_user, name="logout"),
     path('detail/<int:pk>', views.detail, name="detail"),
     path('createqr/', views.create_qrcode, name="createqr"),
+    path('uploadFile/', views.uploadFile, name="uploadfile"),
     path('filedownload/<str:username>/<str:file>/<int:pk>/', views.filedownload, name="filedownload"),
 ]

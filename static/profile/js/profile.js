@@ -23,3 +23,21 @@ $('.createqr').on("click", () => {
         }
     })
 })
+
+function donedownload() {
+    $('#loader-wrapper').attr("hidden", "true")
+    $('.d').css("opacity", "1")
+    swal({
+        title: "Download Successful",
+        icon: "success",
+        buttons: { ok: { text: "OK", className: "btn btn-info" } }
+    });
+}
+
+$('.bdownload').on("click", () => {
+    $('.d').css("opacity", "0.3")
+    $('#loader-wrapper').removeAttr("hidden")
+    setTimeout(function() {
+        donedownload()
+    }, 4000);
+})

@@ -29,13 +29,25 @@
     <link rel="stylesheet" href="{% static 'datatable/css/main.css' %}">
 
     <link rel="stylesheet" href="{% static 'profile/css/main.css' %}">
-
-
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
 </head>
 
 <body>
     <!-- Sidenav -->
-    <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+    <div class="opennav">
+        <img src="{% static 'ham-burger.svg' %}" alt="">
+    </div>
+    <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+        <div style="width: 100%; text-align: right;">
+            <img src="{% static 'close.svg' %}" class="closenav" alt="">
+        </div>
         <div class="scrollbar-inner">
             <!-- Brand -->
             <div class="sidenav-header  align-items-center">
@@ -86,13 +98,75 @@
 
     <div class="main-content" id="panel">
         {% block content %} {% endblock %}
-
-    </div>
-    <div class="download-page">
-        {% block download %} {% endblock %}
     </div>
 
+    {% csrf_token %}
+    <!--Modal: Login with Avatar Form-->
+    <div class="modal fade" id="modalLoginAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog cascading-modal modal-avatar modal-md" role="document">
+            <!--Content-->
+            <div class="modal-content">
+
+                <!--Header-->
+                <div class="modal-header">
+                    <img src="{% static 'upload.jpg' %}" alt="avatar" class="rounded-circle img-responsive">
+                </div>
+                <!--Body-->
+                <div class="modal-body text-center mb-1">
+                    <form>
+                        <h5 class="mt-1 mb-2">{{ user.username }}</h5>
+                        <p class="material-icons text-info mr-2">Upload File Here</p>
+                        <div class="md-form ml-0 mr-0">
+                            <input type="text" type="text" name="filename" id="form29" class="form-control form-control-sm validate ml-0" required>
+                            <label data-error="wrong" data-success="right" for="form29" class="ml-0">FILE NAME</label>
+                        </div>
+                        <div class="md-form ml-0 mr-0">
+                            <input type="text" type="text" name="title" id="form30" class="form-control form-control-sm validate ml-0">
+                            <label data-error="wrong" data-success="right" for="form30" class="ml-0">TITLE</label>
+                        </div>
+                        <div class="md-form ml-0 mr-0">
+                            <label data-error="wrong" data-success="right" for="form31" class="ml-0">FILE</label>
+                            <br> <br>
+                            <input type="file" type="file" id="form31" name="mainfile" class="form-control form-control-sm validate ml-0" required>
+                            <label data-error="wrong" data-success="right" name="file" for="form31" class="ml-0"></label>
+                        </div>
+                        <div class="md-form ml-0 mr-0">
+                            <label data-error="wrong" data-success="right" for="form32" class="ml-0 control-label">FILE TYPE</label>
+                            <br> <br>
+                            <select class="browser-default custom-select filetype" id="form32" required>
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="assignment">assignment</option>
+                            <option value="syllabus">syllabus</option>
+                            <option value="report">report</option>
+                            <option value="notice">notice</option>
+                            <option value="result">result</option>
+                            <option value="report">report</option>
+                            <option value="other">other</option>
+                        </select>
+                        </div>
+                        <div class="md-form ml-0 mr-0">
+                            <input type="text" type="text" id="form33" name="about" class="form-control form-control-sm validate ml-0">
+                            <label data-error="wrong" data-success="right" for="form33" class="ml-0">ABOUT</label>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button class="btn btn-cyan mt-1 calluploadajax">UPLOAD <i class="fas fa-sign-in ml-1"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!--Modal: Login with Avatar Form-->
+    <div class="text-center" hidden>
+        <a href="" class="btn btn-default btn-rounded uploadbutton" data-toggle="modal" data-target="#modalLoginAvatar"></a>
+    </div>
     <script src="{% static 'dashboardtemp/assets/vendor/jquery/dist/jquery.min.js' %}"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+
     <script src="{% static 'dashboardtemp/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'dashboardtemp/assets/vendor/js-cookie/js.cookie.js' %}"></script>
     <script src="{% static 'dashboardtemp/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js' %}"></script>
@@ -103,7 +177,6 @@
     <!-- Argon JS -->
     <script src="{% static 'dashboardtemp/assets/js/argon.js' %}"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.3/af-2.3.7/date-1.1.1/r-2.2.9/sb-1.3.0/sp-1.4.0/datatables.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
@@ -116,7 +189,12 @@
     <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.colVis.min.js"></script>
     <script src="{% static 'datatable/js/main.js' %}"></script>
     <script src="{% static 'profile/js/profile.js' %}"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- MBD modal javascript -->
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 </body>
 
 </html>

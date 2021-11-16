@@ -1,14 +1,27 @@
+from django.contrib.auth.backends import RemoteUserBackend
+from django.http.response import FileResponse
 from django.shortcuts import redirect, render
 from shareApp.forms import UserRegisterForm
 from django.contrib.auth import login, authenticate
 from shareApp.models import FileModel, User
 from django.http import JsonResponse
+from PIL import Image
+import os
 
+def if_anonymous(func):
+    def checkauthentication(*args, **kwargs):
+        if not args[0].user.is_authenticated:
+            return redirect("login")
+        return func(*args, **kwargs)
+    return checkauthentication
 
+@if_anonymous
 def home(request):
     return render(request, "base.html")
 
+@if_anonymous
 def dashboard(request):
+    context = {}
     if request.is_ajax():
         result1 = [0, 0 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         result2temp = {"assignment":0, "syllabus":0, "report": 0,"notice": 0, "result":0, "other": 0}
@@ -47,7 +60,7 @@ def register(request):
         
     return render(request, "shareApp/register.html", context)
 
-
+@if_anonymous
 def profile(request):
     user = request.user
     assignment = FileModel.objects.filter(user=user, file_type="assignment")
@@ -67,3 +80,20 @@ def profile(request):
         }
    
     return render(request, "profile/index.html", context)
+
+
+@if_anonymous
+def checkqrcode(request):
+        if request.is_ajax():
+            filemodel = FileModel.objects.get(id=request.GET.get("fileid"))
+            data = ""
+            result = ""
+            if filemodel.qrcode:
+                result = "present"
+                fn = filemodel.qrcode.path
+                response = FileResponse(open(fn, 'rb'), content_type='image/png')
+                response['Content-Disposition'] = 'attachment; filename="'+os.path.basename(fn)+'"'
+                data = filemodel.qrcode.url
+            else:
+                result = "absent"
+        return JsonResponse({"data": data, "result": result})

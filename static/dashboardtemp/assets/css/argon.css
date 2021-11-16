@@ -7568,6 +7568,14 @@ button.bg-darker:focus {
 .rounded-circle,
 .avatar.rounded-circle img {
     border-radius: 50% !important;
+    object-fit: contain;
+}
+
+.avatar.rounded-circle .imgicon {
+    height: 40px;
+    width: 40px;
+    border-radius: 50% !important;
+    object-fit: contain;
 }
 
 .rounded-pill {
@@ -17534,10 +17542,6 @@ textarea[resize='horizontal'] {
     }
 }
 
-.nav-open .sidenav {
-    transform: translateX(0px);
-}
-
 .nav-open .sidenav-toggler-inner .sidenav-toggler-line:first-child {
     width: 13px;
     transform: translateX(5px);
@@ -17546,6 +17550,35 @@ textarea[resize='horizontal'] {
 .nav-open .sidenav-toggler-inner .sidenav-toggler-line:last-child {
     width: 13px;
     transform: translateX(5px);
+}
+
+.sidenav .closenav {
+    margin: 10px 10px 10px 10px;
+    width: 30px;
+}
+
+.opennav {
+    width: 50px;
+    text-align: left;
+    position: absolute;
+    z-index: 10;
+    padding: 10px 0px 0px 10px;
+}
+
+.opennav img {
+    width: 45px;
+    padding-top: -10px;
+}
+
+.opennav img:hover {
+    width: 50px;
+    cursor: grab;
+}
+
+.sidenav .closenav:hover {
+    margin: 10px 10px 10px 10px;
+    width: 35px;
+    cursor: grab;
 }
 
 .navbar-vertical {
@@ -24558,4 +24591,14 @@ input.datetimepicker[data-color='yellow']+.bootstrap-datetimepicker-widget.dropd
 
 .bootstrap-datetimepicker-widget.dropdown-black table td .btn[data-action='togglePeriod'] {
     background: transparent;
+}
+
+.uploadfile:hover {
+    cursor: grab;
+    width: 140px;
+    height: 40px;
+}
+
+.swal-footer {
+    text-align: center;
 }

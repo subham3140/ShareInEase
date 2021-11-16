@@ -1071,3 +1071,129 @@ var Scrollbar = (function() {
     }
 
 })();
+
+function refreshPage() {
+    window.location.reload()
+}
+
+
+$('.uploadfile').on("click", () => {
+    $('.uploadbutton').click()
+})
+
+$('.calluploadajax').on("click", (e) => {
+    let filename = $('input[name=filename]')[0].value
+    let title = $('input[name=title]')[0].value
+    let file = $('input[name=mainfile]')[0].files[0]
+    let filetype = $('.filetype')[0].value
+    let about = $('input[name=about]')[0].value
+    let csrf_token = $('input[name=csrfmiddlewaretoken]')[0].value
+    let data = new FormData();
+    data.append("filename", filename)
+    data.append("title", title)
+    data.append("file", file)
+    data.append("filetype", filetype)
+    data.append("about", about)
+    if (filename != "" && filetype != "" && file != "") {
+        e.preventDefault()
+        $.ajax({
+            url: "/shareApp/uploadFile/",
+            data: data,
+            mimeType: 'multipart/form-data',
+            method: "POST",
+            processData: false,
+            contentType: false,
+            cache: false,
+            headers: {
+                'X-CSRFToken': csrf_token
+            },
+            success: function(response) {
+                let result = JSON.parse(response)["result"]
+                if (result != "error") {
+                    swal({
+                        title: "File Uploaded Successfully",
+                        icon: "success",
+                        buttons: { ok: { text: "OK", className: "btn btn-info" } }
+                    }).then((res) => {
+                        setTimeout(function() {
+                            refreshPage()
+                        }, 1000)
+                    });
+                }
+            },
+            error: function() {
+                swal({
+                    title: "Error",
+                    text: "Please check the input or server",
+                    icon: "error",
+                    buttons: { ok: { text: "OK", className: "btn btn-info" } }
+                });
+            }
+        })
+    }
+})
+
+
+$(".closenav").on("click", () => {
+    $(".sidenav").removeClass("fixed-left")
+    $(".sidenav").attr("hidden", "true")
+})
+
+$(".opennav").on("click", () => {
+    $(".sidenav").addClass("fixed-left")
+    $(".sidenav").removeAttr("hidden")
+})
+
+
+function qrcodeshortcut(e) {
+    let fileid = e.value
+    let filename = e.name
+    $.ajax({
+        url: "/checkqrcode/",
+        data: { "fileid": fileid },
+        success: function(response) {
+            if (response.result == "present") {
+                var img = document.createElement("IMG");
+                img.src = response.data;
+                $('.qrcode').html(img);
+                $('.showqrcode').click()
+                $('#titleqrcode')[0].innerHTML = "QR CODE FOR " + '<strong>' + filename + "</strong>"
+            } else {
+                swal({
+                    title: "SORRY",
+                    text: "QR CODE NOT AVAILABLE!",
+                    icon: "info",
+                    buttons: {
+                        ok: { text: "generate code", className: "btn btn-info" },
+                        cancle: {
+                            text: "ok",
+                            className: "btn btn-danger"
+                        }
+                    }
+                }).then((data) => {
+                    if (data == "ok") {
+                        $('.container-fluid').css("opacity", "0.3")
+                        $('#loader-wrapper').removeAttr("hidden")
+                        let csrf_token = $("input[name=csrfmiddlewaretoken]").val()
+                        let id = fileid
+                        $.ajax({
+                            url: "/shareApp/createqr/",
+                            method: "POST",
+                            headers: {
+                                'X-CSRFToken': csrf_token
+                            },
+                            data: { "id": id },
+                            success: function(response) {
+                                if (response["result"] == "ok") {
+                                    setTimeout(function() {
+                                        refreshPage()
+                                    }, 3000);
+                                }
+                            }
+                        })
+                    }
+                });
+            }
+        }
+    })
+}
