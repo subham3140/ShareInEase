@@ -50,7 +50,10 @@ def logout_user(request):
 
 @if_anonymous
 def detail(request, **args):
-    file = FileModel.objects.get(id=args["pk"], user=request.user)
+    try:
+        file = FileModel.objects.get(id=args["pk"], user=request.user)
+    except:
+        return redirect("profile")
     user = request.user
     context = {
         "file": file,
@@ -61,7 +64,10 @@ def detail(request, **args):
 @if_anonymous
 def create_qrcode(request):
     if request.is_ajax():
-        file_inst = FileModel.objects.get(id=request.POST.get("id"), user=request.user)
+        try:
+            file_inst = FileModel.objects.get(id=request.POST.get("id"), user=request.user)
+        except:
+            return redirect("profile")
         url_string = f"{request.META['HTTP_HOST']}/shareApp/filedownload/{request.user.username}/{file_inst.file_name}/{file_inst.id}/"
         qrcode_img = qrcode.make(url_string)
 
@@ -84,7 +90,10 @@ def create_qrcode(request):
     return HttpResponse("no itme")
 
 def filedownload(request, **kwargs):
-    file = FileModel.objects.get(id=kwargs["pk"])
+    try:
+        file = FileModel.objects.get(id=kwargs["pk"], user=request.user)
+    except:
+        return redirect("profile")
     context = {"file": file}
     return render(request, "shareApp/downloadfile.html", context)
 

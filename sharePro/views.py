@@ -15,6 +15,8 @@ def if_anonymous(func):
         return func(*args, **kwargs)
     return checkauthentication
 
+
+
 @if_anonymous
 def home(request):
     return render(request, "base.html")
@@ -85,7 +87,10 @@ def profile(request):
 @if_anonymous
 def checkqrcode(request):
         if request.is_ajax():
-            filemodel = FileModel.objects.get(id=request.GET.get("fileid"))
+            try:
+               filemodel = FileModel.objects.get(id=request.GET.get("fileid"))
+            except:
+                return redirect("profile")            
             data = ""
             result = ""
             if filemodel.qrcode:
