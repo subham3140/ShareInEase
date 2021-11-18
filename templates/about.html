@@ -1,0 +1,129 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+
+<nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: flex; justify-content: flex-end;">
+            <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+                <li class="nav-item dropdown">
+                    <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="media align-items-center">
+                            <span class="avatar avatar-sm rounded-circle">
+                                <img alt="Image placeholder" src="{% static 'profile/profiledefault.png' %}" class="imgicon">
+                           </span>
+                            <div class="media-body  ml-2  d-none d-lg-block">
+                                <span class="mb-0 text-sm  font-weight-bold">Welcome</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Header -->
+<!-- Page content -->
+<section id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-sm-8 wow fadeInUp abtm" data-wow-delay="0.2s">
+                <div class="about-thumb wow fadeInUp">
+                    <h1>UNDER THE GUIDANCE of
+                        <h1 class="text-info">MR. PRASHANT KUMAR <small>(DEPARTMENT OF ELECTRONICS AND COMMUNICATION ENGINEERING, NIT JSR.) </small></h1>
+                    </h1> <br>
+                    <div class="whyIsIt wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="wow fadeInU feat">
+                            <div id="t2"> </div>
+                            <h2 class="text-info">INSPIRED BY D2D COMMUNICATION</h2> <br>
+                            <h3>First thought of d2d simple file transfer application then we extended the idea to make it more complex by using transmission of content via external server
+                            </h3>
+                        </div>
+                    </div> <br>
+                    <div class="whyIsIt wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="wow fadeInU feat">
+                            <div id="t2"> </div>
+                            <h2 class="text-info">ABOUT ShareInEase application</h2> <br>
+                            <h3>The main use of this project is to share any doc or file by using QR code to circulate the file in ease. Our project is most probably made upon Python, Django (some python-libraries like Django, datetime, itertools etc.)  and
+                                HTML, CSS, JavaScript for the backend and frontend respectively. Here we basically focused not only on file sharing but few other features like user authentication, faculty dashboard to have secure and better user experience.
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wow fadeInUp about-img" data-wow-delay="0.6s">
+                <img src="{% static 'about/images/prashant.jpg' %}" class="img-responsive img-circle" alt="About">
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="col-md-12 col-sm-12 wow fadeInUp" id="team" data-wow-delay="0.3s" style="height: 210px;">
+                <div class="section-title text-center">
+                    <h1 class="text-info" style="padding-top:100px;"> <strong>Developers</strong></h1>
+                </div>
+            </div>
+            <div id="team-carousel" class="owl-carousel">
+                <div class="row">
+                    <div class="item col-md-11 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="team-thumb">
+                            <div class="image-holder">
+                                <img src="{% static 'about/images/shubham.jpg' %}" class="img-responsive img-circle" alt="Mary">
+                            </div> <br> <br> <br>
+                            <h2 class="heading">Shubham Sharma</h2>
+                            <small class="description">Aliquam ac justo est. Praesent feugiat cursus est.</small>
+                        </div>
+                    </div>
+                    <div class="item col-md-11 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="team-thumb">
+                            <div class="image-holder">
+                                <img src="{% static 'about/images/raman.jpeg' %}" class="img-responsive img-circle" alt="Jack">
+                            </div> <br> <br> <br>
+                            <h2 class="heading">Jack, Founder</h2>
+                            <small class="description">Maecenas sed diam eget risus varius blandit sit non.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item col-md-11 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="team-thumb">
+                            <div class="image-holder">
+                                <img src="{% static 'about/images/kunal.jpeg' %}" class="img-responsive img-circle" alt="Mary">
+                            </div> <br> <br> <br>
+                            <h2 class="heading">Shubham Sharma</h2>
+                            <small class="description">Aliquam ac justo est. Praesent feugiat cursus est.</small>
+                        </div>
+                    </div>
+
+                    <div class="item col-md-11 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="team-thumb">
+                            <div class="image-holder">
+                                <img src="{% static 'about/images/kunal.jpeg' %}" class="img-responsive img-circle" alt="Mary">
+                            </div> <br> <br> <br>
+                            <h2 class="heading">Jack, Founder</h2>
+                            <small class="description">Maecenas sed diam eget risus varius blandit sit non.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item col-md-11 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="team-thumb">
+                            <div class="image-holder">
+                                <img src="{% static 'about/images/kunal.jpeg' %}" class="img-responsive img-circle" alt="Mary">
+                            </div> <br> <br> <br>
+                            <h2 class="heading">Shubham Sharma</h2>
+                            <small class="description">Aliquam ac justo est. Praesent feugiat cursus est.</small>
+                        </div>
+                    </div>
+
+                    <div class="item col-md-11 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="team-thumb">
+                            <div class="image-holder">
+                                <img src="{% static 'about/images/kunal.jpeg' %}" class="img-responsive img-circle" alt="Mary">
+                            </div> <br> <br> <br>
+                            <h2 class="heading">Jack, Founder</h2>
+                            <small class="description">Maecenas sed diam eget risus varius blandit sit non.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+{% endblock %}

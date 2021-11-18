@@ -41,3 +41,7 @@ $('.bdownload').on("click", () => {
         donedownload()
     }, 4000);
 })
+
+$('.shownav').on("click", () => {
+    console.log("dfsdvbjc")
+})

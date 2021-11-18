@@ -42,7 +42,7 @@ def login_user(request):
             if user:
               login(request, user)  
               return redirect('home')
-    return redirect("register")
+    return redirect("login")
 
 def logout_user(request):
     logout(request)

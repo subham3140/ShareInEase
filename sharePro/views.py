@@ -102,3 +102,8 @@ def checkqrcode(request):
             else:
                 result = "absent"
         return JsonResponse({"data": data, "result": result})
+
+
+
+def aboutus(request):
+    return render(request, "about.html")

@@ -14,6 +14,7 @@ urlpatterns = [
     path('login/', TemplateView.as_view(template_name = 'login/login.html'), name="login"),
     path('profile/',views.profile, name="profile"),
     path('register/', views.register, name="register"),
+    path('about/', views.aboutus, name="about"),
     path('admin/', admin.site.urls),
     path('checkqrcode/', views.checkqrcode, name="checkqrcode"),
     url(r'download/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
